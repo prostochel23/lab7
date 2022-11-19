@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL}}/static/styles/registration.css">
+    <title>Авторизация</title>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <img src="{{ STATIC_URL }}/static/content/Logotip_Mtusi_znachok.png"/>
+            <div class="navigation">
+                <p><a href="/login/">Авторизироваться</a></p>
+                <p><a href="/">Все статьи</a></p>
+            </div>
+        </div>
+        <form method="POST">{% csrf_token %}
+            <h1>Авторизироваться</h1>
+            <p><input type="text" name="username" placeholder="Введите имя пользователя" value="{{ form.username }}"></p>
+            <p><input type="text" name="email" placeholder="Введите почту" value="{{ form.email }}"></p>
+            <p><input type="password" name="password" placeholder="Введите пароль" value="{{ form.password }}"></p>
+            <p><input type="submit" value="Зарегистрироваться"></p>
+        </form>
+        <p class="error">{{ form.errors }}</p>
+    </div>
+</body>
+</html>

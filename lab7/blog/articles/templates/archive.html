@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL}}/static/archive.css">
+    <title>Архив статей</title>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <img src="{{ STATIC_URL }}/static/BILLY.png"/>
+        </div>
+        <div class="navigation">
+            {% for description in links_list %}
+                <p>{{ description.0 }}</p>
+                <p><a href="{{ description.ref }}">{{ description.text }}</a></p>
+            {% endfor %}
+        </div>
+    </div>
+    <form name="Archive" class="archive">
+        {% for post in posts %}
+        <div class="one-post">
+            <div class="Link">
+                <a href="/article/{{post.id}}"><h2 class="post-title"><srtong>{{ post.title }}<srtong /></h2></a>
+                <input type="button" value="Свернуть" class="hide_btn" name="Shown" id="{{post.id}}">
+            </div>
+            <div class="article-content">
+                <div class="article-info">
+                    <div class="article-author">{{ post.author.username }}</div>
+                    <div class="article-created-date">{{ post.created_date }}</div>
+                </div>
+                <div>
+                </div>
+                <p class="article-text">{{ post.get_excerpt }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </form>
+    <form name = "Solution">
+        <p><input type="text" placeholder="Введите Название группы" value="" class = "input_sell" name="Group_Name"></p>
+        <p><input type="button" value = "Отсортировать по введённому названию" class="Sort" name = "Grp_srt"></p>
+        <p><input type="number" placeholder = "Введите средний балл для сортировки" value="" class = "input_sell" name="Average_Grade"></p>
+        <p><input type="button" value = "Отсортировать по среднему балу" class="Sort" name = "Grade_srt"></p>
+    </form>
+    <script src=" {{ STATIC_URL }}/static/js/helloworld.js"></script>
+</body>
+</html>
